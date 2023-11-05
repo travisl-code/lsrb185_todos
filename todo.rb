@@ -72,10 +72,16 @@ def error_for_todo(name)
   end
 end
 
+# Before and after actions
 before do
   @storage = DatabasePersistence.new(logger)
 end
 
+after do
+  @storage.disconnect
+end
+
+# Routes, starting with index
 get "/" do
   redirect "/lists"
 end
